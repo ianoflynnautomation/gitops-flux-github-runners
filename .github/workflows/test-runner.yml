@@ -6,7 +6,9 @@ on:
 
 jobs:
   basic-connectivity:
-    runs-on: self-hosted
+    runs-on: 
+      - self-hosted
+      - arc         
     steps:
       - name: Show runner info
         run: |

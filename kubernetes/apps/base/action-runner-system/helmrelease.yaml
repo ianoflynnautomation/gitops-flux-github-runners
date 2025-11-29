@@ -38,6 +38,16 @@ spec:
     maxRunners: 15
     ephemeral: true
 
+    runnerLabels: 
+    - self-hosted
+    - arc
+    - kubernetes
+    - ephemeral
+    - linux
+    - aks
+
+    runnerNamePrefix: "arc-runner-"
+
     containerMode:
       type: kubernetes
 
