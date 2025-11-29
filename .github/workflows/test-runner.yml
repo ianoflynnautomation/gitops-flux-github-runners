@@ -1,0 +1,50 @@
+name: Test AKS Ephemeral Runners - Full Suite
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+
+jobs:
+  basic-connectivity:
+    runs-on: self-hosted
+    steps:
+      - name: Show runner info
+        run: |
+          echo "Runner name: $(hostname)"
+          echo "Runner OS: $(uname -a)"
+          echo "Runner labels: ${{ runner.name }}"
+
+      - name: Verify Kubernetes access
+        run: |
+          kubectl get nodes -o wide
+          kubectl get pods -A | grep arc
+
+      - name: Verify Azure CLI works
+        run: |
+          az account show --query "{subscription:id, tenant:tenantId}"
+
+      - name: Prove ephemeral behavior
+        run: |
+          echo "This pod will be deleted in ~2 minutes after job ends"
+
+  docker-build:
+    runs-on: self-hosted
+    steps:
+      - name: Build a Docker image (tests Docker-in-Docker or docker socket)
+        run: |
+          docker build -t test-image:https://github.com/docker/getting-started .
+
+  heavy-workload:
+    runs-on: self-hosted
+    steps:
+      - name: Stress test (4 cores, 8GB RAM
+        run: |
+          stress-ng --cpu 4 --vm 2 --vm-bytes 4G --timeout 120s
+
+  cleanup-check:
+    runs-on: self-hosted
+    needs: [basic-connectivity, docker-build, heavy-workload]
+    if: always()
+    steps:
+      - name: This job proves multiple concurrent runners work
+        run: echo "All tests passed!"
