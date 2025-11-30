@@ -1,4 +1,3 @@
-
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
@@ -14,16 +13,14 @@ spec:
         kind: HelmRepository
         name: actions-runner-controller
         namespace: flux-system
+  
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: cluster-secrets
+        optional: false
 
   values:
-    # githubAppAuth:
-    #   enabled: true
-    #   azureKeyVault:
-    #     enabled: true
-    #     name: kv-myaks-dev-swn-003
-    #     tenantId: ${TENANT_ID}
-    #     secretNames:
-    #       id: gh-flux-aks-token
     githubAppAuth:
       enabled: false
 
@@ -33,6 +30,7 @@ spec:
 
     githubConfigUrl: "https://github.com/ianoflynnautomation/gitops-flux-github-runners"
     runnerGroup: "aks"
+    
     minRunners: 0
     maxRunners: 15
     ephemeral: true
@@ -42,12 +40,12 @@ spec:
 
     runnerNamePrefix: "arc-runner-"
     runnerLabels: 
-    - self-hosted
-    - arc
-    - kubernetes
-    - ephemeral
-    - linux
-    - aks
+      - self-hosted
+      - arc
+      - kubernetes
+      - ephemeral
+      - linux
+      - aks
 
     containerMode:
       type: kubernetes
@@ -71,8 +69,10 @@ spec:
               limits:
                 cpu: "3"
                 memory: "6Gi"
+        
         nodeSelector:
           kubernetes.azure.com/agentpool: runners
+        
         tolerations:
           - key: runner
             operator: Equal
@@ -83,4 +83,7 @@ spec:
       create: true
       name: actions-runner-controller-manager
       annotations:
-        azure.workload.identity/client-id: ${azurerm_user_assigned_identity.actions_runner_controller.client_id}
+        azure.workload.identity/client-id: "${WORKLOAD_IDENTITY_CLIENT_ID}"
+    
+    podLabels:
+      azure.workload.identity/use: "true"
