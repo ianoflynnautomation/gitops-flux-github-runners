@@ -4,3 +4,5 @@ resources:
 - gotk-components.yaml
 - gotk-sync.yaml
 - ../apps
+- ./arc-controller-namespace.yaml
+- ./arc-controller-hr.yaml
