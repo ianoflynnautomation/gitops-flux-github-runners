@@ -4,7 +4,5 @@ namespace: actions-runner-system
 
 resources:
   - namespace.yaml
-  - helmrepository.yaml
-  - secretstore.yaml 
   - externalsecret-pat.yaml
   - helmrelease.yaml

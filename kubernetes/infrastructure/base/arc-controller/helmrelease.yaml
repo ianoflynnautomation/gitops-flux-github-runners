@@ -1,30 +1,35 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: arc-controller
+  name: actions-runner-controller
   namespace: arc-systems
 spec:
   interval: 10m
+  timeout: 5m
   chart:
     spec:
-      chart: gha-runner-scale-set-controller
-      version: "0.13.0"
+      chart: actions-runner-controller
+      version: 0.23.0
       sourceRef:
         kind: HelmRepository
         name: actions-runner-controller
-
-  install:
-    remediation:
-      retries: 3
-  upgrade:
-    remediation:
-      retries: 3
   values:
-    replicaCount: 1
+    replicaCount: 2
+    authSecret:
+      create: false
+      name: arc-github-app-auth 
+    syncPeriod: 5m
+    serviceAccount:
+      create: true
+      name: actions-runner-controller
+      annotations:
+        azure.workload.identity/client-id: "{{ .vars.ARC_CONTROLLER_CLIENT_ID }}"
+      labels:
+        azure.workload.identity/use: "true"
     resources:
       requests:
         cpu: 100m
-        memory: 128Mi
+        memory: 256Mi
       limits:
         cpu: 500m
         memory: 512Mi

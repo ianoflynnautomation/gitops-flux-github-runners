@@ -3,9 +3,11 @@ kind: HelmRepository
 metadata:
   name: actions-runner-controller
   namespace: arc-systems
+  labels:
+    app.kubernetes.io/part-of: github-runners
 spec:
   type: oci
   url: oci://ghcr.io/actions-runner-controller/actions-runner-controller
-  interval: 3m
+  interval: 5m
   secretRef:
     name: ghcr-auth

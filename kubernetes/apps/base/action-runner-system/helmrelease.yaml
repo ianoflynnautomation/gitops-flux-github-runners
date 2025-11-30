@@ -36,12 +36,13 @@ spec:
       - aks
     containerMode:
       type: kubernetes
-      kubernetesModeWorkVolumeClaim:
-        storageClassName: managed-csi-premium
-        accessModes: ["ReadWriteOnce"]
-        resources:
-          requests:
-            storage: 50Gi
+
+    kubernetesModeWorkVolumeClaim:
+      storageClassName: managed-csi-premium
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 50Gi
     template:
       spec:
         serviceAccountName: actions-runner-controller-manager
@@ -63,7 +64,7 @@ spec:
             value: "true"
             effect: NoSchedule
     serviceAccount:
-      create: true
-      name: actions-runner-controller-manager
-    podLabels:
-      azure.workload.identity/use: "true"
+      annotations:
+        azure.workload.identity/client-id: "{{ .vars.ARC_RUNNERS_CLIENT_ID }}"
+      labels:
+        azure.workload.identity/use: "true"
