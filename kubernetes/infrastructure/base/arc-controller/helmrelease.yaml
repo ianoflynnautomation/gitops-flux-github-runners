@@ -12,7 +12,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: actions-runner-controller
-        namespace: flux-system
+        namespace: arc-systems
   
   install:
     remediation:

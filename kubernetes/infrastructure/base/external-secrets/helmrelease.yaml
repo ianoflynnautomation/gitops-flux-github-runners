@@ -20,7 +20,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: external-secrets
-        namespace: flux-system
+        namespace: external-secrets-system
 
   # postBuild:
   #   substituteFrom:
@@ -38,8 +38,8 @@ spec:
       # annotations:
       #   azure.workload.identity/client-id: ${WORKLOAD_IDENTITY_CLIENT_ID}
 
-    podLabels:
-      azure.workload.identity/use: "true"
+    # podLabels:
+    #   azure.workload.identity/use: "true"
     
     resources:
       requests:
