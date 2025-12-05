@@ -7,7 +7,7 @@ spec:
   interval: 30m
   retryInterval: 1m
   timeout: 3m
-  path: "./apps/base/actions-runner-system/gha-runner-scale-set/app"
+  path: "./kubernetes/apps/base/actions-runner-system/gha-runner-scale-set/app"
   prune: true
   wait: true
   sourceRef:
