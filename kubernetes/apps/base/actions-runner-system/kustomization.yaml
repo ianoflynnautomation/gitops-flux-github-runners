@@ -4,5 +4,3 @@ namespace: actions-runner-system
 
 resources:
   - namespace.yaml
-  - gha-runner-scale-set-controller
-  - gha-runner-scale-set
