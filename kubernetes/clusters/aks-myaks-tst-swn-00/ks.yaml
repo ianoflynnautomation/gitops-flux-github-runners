@@ -8,8 +8,7 @@ spec:
   path: "../../apps/overlays/aks-myaks-tst-swn-00"
   prune: true
   sourceRef:
-    kind: OCIRepository
+    kind: GitRepository
     name: flux-system
-  targetNamespace: "" 
   wait: true
   timeout: 5m
