@@ -27,4 +27,4 @@ spec:
       serviceAccount:
         name: external-secrets
         annotations:
-          azure.workload.identity/client-id: "8be7cb5c-1305-420b-b1ef-b37113125ba8"
+          azure.workload.identity/client-id: ""
