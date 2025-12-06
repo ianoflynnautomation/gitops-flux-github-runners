@@ -5,9 +5,6 @@ metadata:
   namespace: flux-system
 spec:
   interval: 30m
-  timeout: 5m
-  maxHistory: 5
-
   chart:
     spec:
       chart: external-secrets
@@ -17,23 +14,10 @@ spec:
         name: external-secrets
         namespace: flux-system
       interval: 10m
-
   install:
     crds: CreateReplace
     createNamespace: true
   upgrade:
     crds: CreateReplace
-
   values:
     installCRDs: true
-    image:
-      repository: ghcr.io/external-secrets/external-secrets
-      tag: v0.10.4
-    webhook:
-      image:
-        repository: ghcr.io/external-secrets/external-secrets
-        tag: v0.10.4
-    certController:
-      image:
-        repository: ghcr.io/external-secrets/external-secrets
-        tag: v0.10.4
