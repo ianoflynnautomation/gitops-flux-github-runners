@@ -35,3 +35,5 @@ spec:
   values:
     fullnameOverride: gha-runner-scale-set-controller
     replicaCount: 1
+  webhook:
+      enabled: false
