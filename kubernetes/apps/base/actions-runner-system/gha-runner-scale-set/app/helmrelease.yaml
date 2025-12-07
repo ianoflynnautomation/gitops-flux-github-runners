@@ -23,12 +23,12 @@ spec:
       strategy: rollback
     cleanupOnFail: true
     crds: CreateReplace
-  test:
-    enable: true
-  rollback:
-    recreate: true
-    force: true
-    cleanupOnFail: true
+  # test:
+  #   enable: true
+  # rollback:
+  #   recreate: true
+  #   force: true
+  #   cleanupOnFail: true
   uninstall:
     keepHistory: false
   driftDetection:
@@ -42,7 +42,7 @@ spec:
     runnerScaleSetName: gha-runner-scale-set
     githubConfigSecret: github-app-secret
     githubConfigUrl: https://github.com/ianoflynnautomation/gitops-flux-github-runners
-    maxRunners: 3
+    maxRunners: 5
     minRunners: 1
     controllerServiceAccount:
       name: gha-runner-scale-set-controller

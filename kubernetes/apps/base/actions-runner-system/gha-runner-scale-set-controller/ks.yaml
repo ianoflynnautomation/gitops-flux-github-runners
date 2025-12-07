@@ -3,7 +3,6 @@ kind: Kustomization
 metadata:
   name: gha-runner-scale-set-controller
   namespace: actions-runner-system
-
 spec:
   interval: 30m
   retryInterval: 1m
