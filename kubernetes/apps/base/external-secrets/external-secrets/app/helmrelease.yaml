@@ -12,7 +12,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: external-secrets
-        namespace: external-secrets
+        namespace: flux-system
       interval: 10m
   install:
     crds: CreateReplace
@@ -20,15 +20,15 @@ spec:
   upgrade:
     crds: CreateReplace
   values:
-    installCRDs: true
+    installCRDs: false
     certController:
       enabled: true
     controller:
       serviceAccount:
         create: true
         name: external-secrets
-        labels: 
-          azure.workload.identity/use: "true"
+        # labels: 
+        #   azure.workload.identity/use: "true"
         annotations:
           azure.workload.identity/client-id: "c23647c0-2074-4565-8940-54e18057a0f0"
           azure.workload.identity/tenant-id: "01b41838-a123-48a9-9aaf-91a8d640ff68"
