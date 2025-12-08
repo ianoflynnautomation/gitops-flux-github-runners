@@ -33,3 +33,5 @@ spec:
       annotations:
         azure.workload.identity/client-id: "a9fade03-308c-414c-9696-f345e4af1285"
         azure.workload.identity/tenant-id: "01b41838-a123-48a9-9aaf-91a8d640ff68"
+      podLabels:
+        azure.workload.identity/use: "true"

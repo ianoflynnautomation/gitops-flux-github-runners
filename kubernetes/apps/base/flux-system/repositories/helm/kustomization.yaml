@@ -3,4 +3,5 @@ kind: Kustomization
 namespace: flux-system
 
 resources:
+  - external-secrets.yaml
   - actions-runner-controller.yaml
