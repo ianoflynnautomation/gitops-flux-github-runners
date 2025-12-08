@@ -30,13 +30,8 @@ spec:
   #   cleanupOnFail: true
   # uninstall:
   #   keepHistory: false
-  # driftDetection:
-  #   mode: enabled
+  driftDetection:
+    mode: enabled
   values:
     fullnameOverride: gha-runner-scale-set-controller
     replicaCount: 1
-    # github:
-    #   url: https://github.com
-    #   token:
-    #     secretName: github-app-secret
-    #     secretKey: github_token

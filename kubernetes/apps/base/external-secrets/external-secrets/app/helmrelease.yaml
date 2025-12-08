@@ -31,5 +31,5 @@ spec:
       create: true
       name: external-secrets
       annotations:
-        azure.workload.identity/client-id: "4c960f21-8ffa-44e0-a30b-ac4a6dce1ca2"
+        azure.workload.identity/client-id: "508bcd98-5e4c-40e2-a68d-773035a263e5"
         azure.workload.identity/tenant-id: "01b41838-a123-48a9-9aaf-91a8d640ff68"
