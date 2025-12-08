@@ -18,4 +18,3 @@ spec:
   dependsOn:
     - name: external-secrets 
       namespace: flux-system
-      kind: HelmRelease
