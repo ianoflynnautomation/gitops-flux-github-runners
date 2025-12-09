@@ -1,12 +1,12 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
-kind: helmrelease
+kind: HelmRelease
 metadata:
   name: external-secrets
   namespace: flux-system
 spec:
   interval: 10m
   releaseName: external-secrets
-  targetNamespace: external-secrets 
+  targetNamespace: external-secrets
   chart:
     spec:
       chart: external-secrets
@@ -22,7 +22,7 @@ spec:
   upgrade:
     crds: CreateReplace
   values:
-    installCRDs: true                     
+    installCRDs: true
     webhook:
       create: true
     certController:
